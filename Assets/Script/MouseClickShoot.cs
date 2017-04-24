@@ -13,7 +13,7 @@ public class MouseClickShoot : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {////(2)
-			if (Input.GetKeyDown(KeyCode.Q) && hit.transform.gameObject.tag == "floor") {
+			if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.tag == "floor") {
 				shootState = true;////(3)
 				target = new Vector3 (hit.point.x, this.transform.position.y, hit.point.z);
 

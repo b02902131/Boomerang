@@ -11,9 +11,15 @@ public class BloodMgr : MonoBehaviour {
 
 	private Image[] bloods;
 
-	public void setBlood(int blood) {
-		if ( blood >= 0 ) {
-			this.currentBones = blood;
+	public void bloodGain(){
+		if ( currentBones < 7 ) {
+			currentBones++;
+		}
+	}
+
+	public void bloodLoss(){
+		if ( currentBones > 0 ) {
+			currentBones--;
 		}
 	}
 

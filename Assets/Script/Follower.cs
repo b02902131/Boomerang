@@ -20,11 +20,13 @@ public class Follower : MonoBehaviour {
 	private Vector3 targetVelocity;
 	public MouseClickMove mouseClickMove;
 	public float maxDistance ;
+	private Bonerang bonerang;
 
 	// Use this for initialization
 	void Start () {
 		rb = this.GetComponent<Rigidbody> ();
 		state = State.Start;
+		bonerang = this.GetComponent<Bonerang> ();
 	}
 
 	// Update is called once per frame
@@ -32,17 +34,7 @@ public class Follower : MonoBehaviour {
 		
 	}
 
-	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.CompareTag ("Player")) {
-			Destroy (this.gameObject);
-		}
-	}
 
-	void OnTriggerEnter(Collider other){
-		if (other.CompareTag ("Player")) {
-			Destroy (this.gameObject);
-		}
-	}
 
 	public void Flyout(Vector3 target){
 		state = State.flyOut;
@@ -60,6 +52,7 @@ public class Follower : MonoBehaviour {
 			target = transform.position + d.normalized * maxDistance;
 		}
 		this.transform.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
+		bonerang.FlyBack ();
 	}
 	void Drop(){
 		state = State.Drop;

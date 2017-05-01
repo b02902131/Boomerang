@@ -26,4 +26,9 @@ public class ScoreUIMgr : MonoBehaviour {
 		score += num;
 		UpdateScoreUI(score);
 	}
+
+	public void Reset(){
+		score = 0;
+		score_text.text = score.ToString ();
+	}
 }

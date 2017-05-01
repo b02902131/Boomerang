@@ -7,6 +7,7 @@ public class MouseClickMove : MonoBehaviour {
 	public Vector3 target = new Vector3();
 	public float speed = 1;
 	private Vector3 input01;
+	public int InputMouseButton;
 	int mask;
 
 	void Start(){
@@ -17,7 +18,7 @@ public class MouseClickMove : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 1000, mask)) {////(2)
-			if (Input.GetMouseButtonDown (0) && hit.transform.gameObject.tag == "floor") {
+			if (Input.GetMouseButtonDown (InputMouseButton) && hit.transform.gameObject.tag == "floor") {
 				moveState = true;////(3)
 				target = new Vector3 (hit.point.x, this.transform.position.y, hit.point.z);
 			}

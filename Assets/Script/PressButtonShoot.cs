@@ -9,6 +9,8 @@ public class PressButtonShoot : MonoBehaviour {
 	private Vector3 target = new Vector3();
 	public KeyCode shootKey;
 	public ScoreUIMgr scoreUIMgr;
+	public BloodMgr bloodMgr;
+	public float fowardDistance;
 
 	// Use this for initialization
 	void Start () {
@@ -35,13 +37,14 @@ public class PressButtonShoot : MonoBehaviour {
 
 			} else {
 				this.transform.LookAt (target);
-				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward, Quaternion.identity);
+				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
 				Follower follower = br.GetComponent<Follower> ();
 				follower.mouseClickMove = GetComponent<MouseClickMove> ();
 				follower.Flyout (target);
 				follower.player = this.gameObject.transform;
 				Bonerang bonerang = br.GetComponent<Bonerang> ();
 				bonerang.scoreUIMgr = scoreUIMgr;
+				bloodMgr.bloodLoss (1);
 			}
 		}
 	}

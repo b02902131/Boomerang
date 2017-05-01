@@ -11,6 +11,8 @@ public class BloodMgr : MonoBehaviour {
 
 	private Image[] bloods;
 
+	public GameManager gameMgr;
+
 	public void bloodGain(int damage){
 		if (damage > 0) {
 			if (currentBones < 7) {
@@ -52,5 +54,20 @@ public class BloodMgr : MonoBehaviour {
 		}
 
 		bones = currentBones;
+
+		if (bones <= 0) {
+			gameMgr.GameOver ();
+		}
+	}
+
+	public void Reset(){
+		for ( int i = this.bones; i < 7; i++ ) {
+			bloods[i].enabled = true;
+		}
+		bones = 3;
+		currentBones = bones;
+		for ( int i = this.bones; i < 7; i++ ) {
+			bloods[i].enabled = false;
+		}
 	}
 }

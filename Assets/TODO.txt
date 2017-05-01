@@ -1,0 +1,18 @@
+﻿
+todo:
+	回力鏢：
+		飛鏢擺太久會消失
+		跟場景物件的互動例如卡樹
+	敵人：
+		不同型態的敵人
+			坦型敵人，低傷害或是沒傷害，但血多
+			定點敵人，遠程小兵
+	場景道具：
+		牛奶回血
+	combo特效：
+	視覺：
+		滑鼠點擊移動的動畫
+
+Fix problem:
+	player rigidbody collide with bommerang
+	the first boomerang cannot emit, dont know why

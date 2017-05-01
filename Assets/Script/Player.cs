@@ -20,4 +20,10 @@ public class Player : MonoBehaviour {
 			mgr.bloodLoss (damage);
 		}
 	}
+
+	public void CatchBoomerang(){
+		print ("catch");
+		mgr.bloodGain (1);
+		//maybe play catch animation
+	}
 }

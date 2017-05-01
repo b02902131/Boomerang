@@ -28,4 +28,6 @@ public class EnermyGenerator : MonoBehaviour {
 		Enermy enermy = Instantiate (enemy_prefab, this.transform.position, Quaternion.identity);
 		enermy.target = player;
 	}
+
+
 }

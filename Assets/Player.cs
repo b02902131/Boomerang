@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-//	public BloodMgr mgr;
-	public int blood_num;
+	public BloodMgr mgr;
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -17,6 +15,9 @@ public class Player : MonoBehaviour {
 		
 	}
 
-	public void Hit(){
+	public void Hit(int damage){
+		if (damage > 0) {
+			mgr.bloodLoss (damage);
+		}
 	}
 }

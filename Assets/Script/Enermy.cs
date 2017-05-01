@@ -10,6 +10,8 @@ public class Enermy : MonoBehaviour {
 	public Transform target;
 	public EnermyType type = EnermyType.chase;
 
+	public int damage = 1;
+
 	public int reward_mutiplier = 1;
 
 	// Use this for initialization
@@ -27,7 +29,18 @@ public class Enermy : MonoBehaviour {
 		}
 	}
 
-	public void Hit(){
+	public void Hit(int count){
+		print ("enemy hit by bonerang");
 		Destroy (this.gameObject);
+	}
+
+
+	void OnCollisionEnter(Collision collision){
+		if (collision.gameObject.CompareTag ("Player")) {
+			Player player = collision.gameObject.GetComponent<Player> ();
+			player.Hit (damage);
+			print ("enemy hit player");
+			// maybe add attack animation
+		}
 	}
 }

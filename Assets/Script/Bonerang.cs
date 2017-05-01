@@ -8,6 +8,7 @@ public class Bonerang : MonoBehaviour {
 	public ScoreUIMgr scoreUIMgr;
 
 	private int hit_counter;
+	private GameObject last_hit_obj = null;
 
 	// Use this for initialization
 	void Start () {
@@ -22,11 +23,14 @@ public class Bonerang : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.CompareTag ("Enermy")) {
 			if (follower.state != Follower.State.Drop) {
-				hit_counter++;
-				Enermy enemy = collision.gameObject.GetComponentInParent<Enermy> ();
-				print ("bonerang hit: counter = " + hit_counter + ", multiplier = " + enemy.reward_mutiplier);
-				scoreUIMgr.AddScoreUI (hit_counter * enemy.reward_mutiplier);
-				enemy.Hit ();
+				if (last_hit_obj == null || last_hit_obj != collision.gameObject) {
+					last_hit_obj = collision.gameObject;
+					hit_counter++;
+					Enermy enemy = collision.gameObject.GetComponentInParent<Enermy> ();
+					print (this.gameObject.name + " bonerang hit: counter = " + hit_counter + ", multiplier = " + enemy.reward_mutiplier);
+					scoreUIMgr.AddScoreUI (hit_counter * enemy.reward_mutiplier);
+					enemy.Hit (hit_counter);
+				}
 			}
 		}
 	}

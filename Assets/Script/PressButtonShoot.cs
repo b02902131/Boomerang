@@ -8,6 +8,7 @@ public class PressButtonShoot : MonoBehaviour {
 	private bool shootState = false;
 	private Vector3 target = new Vector3();
 	public KeyCode shootKey;
+	public ScoreUIMgr scoreUIMgr;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +39,9 @@ public class PressButtonShoot : MonoBehaviour {
 				Follower follower = br.GetComponent<Follower> ();
 				follower.mouseClickMove = GetComponent<MouseClickMove> ();
 				follower.Flyout (target);
-				br.GetComponent<Follower> ().player = this.gameObject.transform;
+				follower.player = this.gameObject.transform;
+				Bonerang bonerang = br.GetComponent<Bonerang> ();
+				bonerang.scoreUIMgr = scoreUIMgr;
 			}
 		}
 	}

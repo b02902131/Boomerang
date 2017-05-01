@@ -10,6 +10,8 @@ public class Enermy : MonoBehaviour {
 	public Transform target;
 	public EnermyType type = EnermyType.chase;
 
+	public int reward_mutiplier = 1;
+
 	// Use this for initialization
 	void Start () {
 		

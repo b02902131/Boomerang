@@ -16,7 +16,6 @@ public class MouseClickMove : MonoBehaviour {
 	void FixedUpdate () {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
-		print ("mask:" + mask);
 		if (Physics.Raycast (ray, out hit, 1000, mask)) {////(2)
 			print("hit"+hit.transform.gameObject.layer);
 			if (Input.GetMouseButtonDown (0) && hit.transform.gameObject.tag == "floor") {

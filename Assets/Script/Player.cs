@@ -5,19 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public BloodMgr mgr;
+	private float injuredInterval = 0.5f;
+	private float injureTimer;
 
 	// Use this for initialization
 	void Start () {
+		injureTimer = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(injureTimer>0) injureTimer -= Time.deltaTime;
 	}
 
 	public void Hit(int damage){
 		if (damage > 0) {
-			mgr.bloodLoss (damage);
+			if (injureTimer <= 0) {
+				mgr.bloodLoss (damage);
+				mgr.PlayHitAnimation ();
+				injureTimer = injuredInterval;
+			}
 		}
 	}
 
@@ -26,4 +33,5 @@ public class Player : MonoBehaviour {
 		mgr.bloodGain (1);
 		//maybe play catch animation
 	}
+
 }

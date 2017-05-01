@@ -12,6 +12,8 @@ todo:
 	combo特效：
 	視覺：
 		滑鼠點擊移動的動畫
+	扣血：
+		短暫計時
 
 Fix problem:
 	player rigidbody collide with bommerang

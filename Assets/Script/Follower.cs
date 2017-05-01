@@ -56,6 +56,12 @@ public class Follower : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other){
+		if (other.CompareTag ("Player")) {
+			Destroy (this.gameObject);
+		}
+	}
+
 	public void Flyout(Vector3 target){
 		Vector3 d = target - this.transform.position;
 		if (d.magnitude > maxDistance) {

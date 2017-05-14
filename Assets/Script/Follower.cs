@@ -6,7 +6,7 @@ using DG.Tweening;
 public class Follower : MonoBehaviour {
 
 	public Transform player;
-	private Rigidbody rb;
+	public  Rigidbody rb;
 
 	public float returnTime;
 	public float speed;
@@ -26,7 +26,6 @@ public class Follower : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rb = this.GetComponent<Rigidbody> ();
 		state = State.Start;
 		bonerang = this.GetComponent<Bonerang> ();
 	}
@@ -36,7 +35,9 @@ public class Follower : MonoBehaviour {
 		
 	}
 
-
+	public void GetRB(){
+		rb = GetComponent<Rigidbody> ();
+	}
 
 	public void Flyout(Vector3 target){
 		state = State.flyOut;
@@ -44,7 +45,8 @@ public class Follower : MonoBehaviour {
 		if (d.magnitude > maxDistance) {
 			target = this.transform.position + d.normalized * maxDistance;
 		}
-		this.transform.DOMove (target, returnTime, false).SetEase (flySpdCurve).OnComplete(FlyBack);
+		print ("follwer46, target = " + target);
+		rb.DOMove (target, returnTime, false).SetEase (flySpdCurve).OnComplete(FlyBack);
 	}
 	public void FlyBack(){
 		state = State.flyBack;
@@ -54,7 +56,7 @@ public class Follower : MonoBehaviour {
 		if (d.magnitude > returnDistance) {
 			target = transform.position + d.normalized * returnDistance;
 		}
-		this.transform.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
+		rb.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
 		bonerang.FlyBack ();
 	}
 	void Drop(){

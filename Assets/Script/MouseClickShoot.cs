@@ -42,6 +42,7 @@ public class MouseClickShoot : PlayerShoot {
 				//			this.transform.LookAt (target);
 				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
 				Follower follower = br.GetComponent<Follower> ();
+				follower.GetRB ();
 				follower.mouseClickMove = GetComponent<MouseClickMove> ();
 				follower.wasdMove = GetComponent<WASDMove> ();
 				follower.Flyout (target);

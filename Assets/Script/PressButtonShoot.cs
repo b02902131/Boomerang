@@ -11,6 +11,7 @@ public class PressButtonShoot : MonoBehaviour {
 	public ScoreUIMgr scoreUIMgr;
 	public BloodMgr bloodMgr;
 	public float fowardDistance;
+	public bool isShootAtTarget;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,31 @@ public class PressButtonShoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (isShootAtTarget) {
+			UpdateShootAtTarget ();
+		} else {
+			UpdateShootForward ();
+		}
+		
+	}
+
+	void UpdateShootForward(){
+		if (Input.GetKeyDown (shootKey)) {
+			target = this.transform.position + this.transform.forward * 10;
+//			this.transform.LookAt (target);
+			GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
+			Follower follower = br.GetComponent<Follower> ();
+			follower.mouseClickMove = GetComponent<MouseClickMove> ();
+			follower.wasdMove = GetComponent<WASDMove> ();
+			follower.Flyout (target);
+			follower.player = this.gameObject.transform;
+			Bonerang bonerang = br.GetComponent<Bonerang> ();
+			bonerang.scoreUIMgr = scoreUIMgr;
+			bloodMgr.bloodLoss (1);
+		}
+	}
+
+	void UpdateShootAtTarget(){
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 1000, LayerMask.GetMask ("Plane"))) {////(2)

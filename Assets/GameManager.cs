@@ -35,15 +35,9 @@ public class GameManager : MonoBehaviour {
 	public void GameOver(){
 		bloodImg.enabled = true;
 		GameCamera.transform.DOShakePosition (CameraShakeDuration, CameraShakeStrenth);
-		for(int k = 0; k < enermyGenFolder.childCount; k++){
-			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
-			for (int i = 0; i < e.transform.childCount; i++) {
-				Destroy (e.transform.GetChild (i).gameObject);
-			}
-			e.enabled = false;
-		}
-		player.GetComponent<MouseClickMove> ().enabled = false;
-		player.GetComponent<PressButtonShoot> ().enabled = false;
+
+		player.GetComponent<PlayerShoot> ().enabled = false;
+		player.GetComponent<PlayerMove> ().enabled = false;
 		player.GetComponent<Player> ().enabled = false;
 		bloodMgr.enabled = false;
 		gameState = GameState.isGameOver;
@@ -53,11 +47,18 @@ public class GameManager : MonoBehaviour {
 		bloodImg.enabled = false;
 		for(int k = 0; k < enermyGenFolder.childCount; k++){
 			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
+			for (int i = 0; i < e.transform.childCount; i++) {
+				Destroy (e.transform.GetChild (i).gameObject);
+			}
+			e.enabled = false;
+		}
+		for(int k = 0; k < enermyGenFolder.childCount; k++){
+			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
 			e.Reset ();
 			e.enabled = true;
 		}
-		player.GetComponent<MouseClickMove> ().enabled = true;
-		player.GetComponent<PressButtonShoot> ().enabled = true;
+		player.GetComponent<PlayerMove> ().enabled = true;
+		player.GetComponent<PlayerShoot> ().enabled = true;
 		player.GetComponent<Player> ().enabled = true;
 		bloodMgr.enabled = true;
 		bloodMgr.Reset ();

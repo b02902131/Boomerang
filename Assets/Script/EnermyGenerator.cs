@@ -10,6 +10,8 @@ public class EnermyGenerator : MonoBehaviour {
 	public float interval_max;
 	public float timer;
 	private float total_time;
+	public float RandRange;
+	public float Speed;
 
 	public AnimationCurve interval;
 
@@ -33,8 +35,9 @@ public class EnermyGenerator : MonoBehaviour {
 	}
 
 	void enermyGenerate(){
-		Enermy enermy = Instantiate (enemy_prefab, this.transform.position, Quaternion.identity, this.transform);
+		Enermy enermy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
 		enermy.target = player;
+		enermy.speed = Speed;
 	}
 
 	public void Reset(){

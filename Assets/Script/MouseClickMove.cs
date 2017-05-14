@@ -8,10 +8,12 @@ public class MouseClickMove : MonoBehaviour {
 	public float speed = 1;
 	private Vector3 input01;
 	public int InputMouseButton;
+	private Rigidbody rigidbody;
 	int mask;
 
 	void Start(){
 		mask = LayerMask.GetMask ("Plane");
+		rigidbody = GetComponent<Rigidbody> ();
 	}
 
 	void FixedUpdate () {
@@ -28,9 +30,12 @@ public class MouseClickMove : MonoBehaviour {
 		if (moveState) {////(5)
 			if (Vector3.Distance (this.transform.position, target) < 0.1f) {
 				moveState = false;
+				rigidbody.velocity = Vector3.zero;
+			} else {
+				this.transform.LookAt (target);
+				//			this.transform.position = Vector3.MoveTowards (this.transform.position, target, step);////(6)
+				rigidbody.velocity = (target - this.transform.position).normalized * speed;
 			}
-			this.transform.LookAt (target);
-			this.transform.position = Vector3.MoveTowards (this.transform.position, target, step);////(6)
 		}
 	}
 }

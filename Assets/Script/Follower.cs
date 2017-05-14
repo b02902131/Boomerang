@@ -19,7 +19,9 @@ public class Follower : MonoBehaviour {
 
 	private Vector3 targetVelocity;
 	public MouseClickMove mouseClickMove;
+	public WASDMove wasdMove;
 	public float maxDistance ;
+	public float returnDistance;
 	private Bonerang bonerang;
 
 	// Use this for initialization
@@ -46,10 +48,11 @@ public class Follower : MonoBehaviour {
 	}
 	public void FlyBack(){
 		state = State.flyBack;
-		Vector3 target = mouseClickMove.target;
+//		Vector3 target = mouseClickMove.target;
+		Vector3 target = player.position + player.GetComponent<Rigidbody>().velocity * 0.5f;
 		Vector3 d = target - transform.position;
-		if (d.magnitude > maxDistance) {
-			target = transform.position + d.normalized * maxDistance;
+		if (d.magnitude > returnDistance) {
+			target = transform.position + d.normalized * returnDistance;
 		}
 		this.transform.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
 		bonerang.FlyBack ();

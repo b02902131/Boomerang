@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class BloodMgr : MonoBehaviour {
 
-	public int bones;
+	private int bones;
+	public int initial_bones;
 	private int currentBones;
 	public GameObject myCanvas;
 
@@ -37,6 +38,7 @@ public class BloodMgr : MonoBehaviour {
 	}
 
 	void Start () {
+		bones = initial_bones;
 		bloods = myCanvas.GetComponentsInChildren<Image>();
 		for ( int i = this.bones; i < 7; i++ ) {
 			bloods[i].enabled = false;
@@ -77,7 +79,7 @@ public class BloodMgr : MonoBehaviour {
 		for ( int i = this.bones; i < 7; i++ ) {
 			bloods[i].enabled = true;
 		}
-		bones = 3;
+		bones = initial_bones;
 		currentBones = bones;
 		for ( int i = this.bones; i < 7; i++ ) {
 			bloods[i].enabled = false;

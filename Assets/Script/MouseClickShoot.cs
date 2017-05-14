@@ -2,17 +2,27 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MouseClickShoot : MonoBehaviour {
+public class MouseClickShoot : PlayerShoot {
 
 //	public Camera camera;
-	public GameObject boomerang;
+
 	private bool shootState = false;
 	private Vector3 target = new Vector3();
+	public BloodMgr bloodMgr;
+	public ScoreUIMgr scoreUIMgr;
+	public float fowardDistance = 1;
+	int mask;
+
+	void Start(){
+		mask = LayerMask.GetMask ("Plane");
+		bloodMgr = GameObject.Find ("BloodMgr").GetComponent<BloodMgr>();
+		scoreUIMgr = GameObject.Find ("ScoreUI").GetComponent<ScoreUIMgr> ();
+	}
 
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
-		if (Physics.Raycast (ray, out hit)) {////(2)
+		if (Physics.Raycast (ray, out hit, 1000, mask)) {////(2)
 			if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.tag == "floor") {
 				shootState = true;////(3)
 				target = new Vector3 (hit.point.x, this.transform.position.y, hit.point.z);
@@ -28,12 +38,28 @@ public class MouseClickShoot : MonoBehaviour {
 
 			} else {
 				this.transform.LookAt (target);
-				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward, Quaternion.identity);
+				target = this.transform.position + this.transform.forward * 10;
+				//			this.transform.LookAt (target);
+				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
 				Follower follower = br.GetComponent<Follower> ();
 				follower.mouseClickMove = GetComponent<MouseClickMove> ();
+				follower.wasdMove = GetComponent<WASDMove> ();
 				follower.Flyout (target);
-				br.GetComponent<Follower> ().player = this.gameObject.transform;
+				follower.player = this.gameObject.transform;
+				Bonerang bonerang = br.GetComponent<Bonerang> ();
+				bonerang.scoreUIMgr = scoreUIMgr;
+				bloodMgr.bloodLoss (1);
+
+				//finish shoot
+				finishShoot();
+
 			}
 		}
+	}
+
+	//for prototype
+	public bool isFinishShoot = false;
+	void finishShoot(){
+		isFinishShoot = true;
 	}
 }

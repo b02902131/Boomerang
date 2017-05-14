@@ -43,9 +43,11 @@ public class Bonerang : MonoBehaviour {
 		}
 		else if (collision.gameObject.CompareTag ("Player")) {
 			if (last_hit_obj == null || last_hit_obj != collision.gameObject) {
-				last_hit_obj = collision.gameObject;
-				collision.gameObject.GetComponent<Player> ().CatchBoomerang ();
-				Destroy (this.gameObject);
+				if (follower.state == Follower.State.flyBack || follower.state == Follower.State.Drop) {
+					last_hit_obj = collision.gameObject;
+					collision.gameObject.GetComponent<Player> ().CatchBoomerang ();
+					Destroy (this.gameObject);
+				}
 			}
 		}
 	}

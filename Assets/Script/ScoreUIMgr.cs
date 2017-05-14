@@ -31,4 +31,8 @@ public class ScoreUIMgr : MonoBehaviour {
 		score = 0;
 		score_text.text = score.ToString ();
 	}
+
+	public int GetScore(){
+		return score;
+	}
 }

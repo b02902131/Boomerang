@@ -46,7 +46,7 @@ public class Follower : MonoBehaviour {
 			target = this.transform.position + d.normalized * maxDistance;
 		}
 		print ("follwer46, target = " + target);
-		rb.DOMove (target, returnTime, false).SetEase (flySpdCurve).OnComplete(FlyBack);
+		this.transform.DOMove (target, returnTime, false).SetEase (flySpdCurve).OnComplete(FlyBack);
 	}
 	public void FlyBack(){
 		state = State.flyBack;
@@ -56,7 +56,7 @@ public class Follower : MonoBehaviour {
 		if (d.magnitude > returnDistance) {
 			target = transform.position + d.normalized * returnDistance;
 		}
-		rb.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
+		this.transform.DOMove (target, returnTime, false).SetEase (flyBackCurve).OnComplete(Drop);
 		bonerang.FlyBack ();
 	}
 	void Drop(){

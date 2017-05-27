@@ -29,7 +29,7 @@ public class ScoreUIMgr : MonoBehaviour {
 
 	public void Reset(){
 		score = 0;
-		score_text.text = score.ToString ();
+		score_text.text = score.ToString ("###0");
 	}
 
 	public int GetScore(){

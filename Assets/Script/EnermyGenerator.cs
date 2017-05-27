@@ -12,6 +12,7 @@ public class EnermyGenerator : MonoBehaviour {
 	private float total_time;
 	public float RandRange;
 	public float Speed;
+	public int blood = 1;
 
 	public AnimationCurve interval;
 
@@ -35,9 +36,10 @@ public class EnermyGenerator : MonoBehaviour {
 	}
 
 	void enermyGenerate(){
-		Enermy enermy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
-		enermy.target = player;
-		enermy.speed = Speed;
+		Enermy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
+		enemy.target = player;
+		enemy.speed = Speed;
+		enemy.blood = blood;
 	}
 
 	public void Reset(){

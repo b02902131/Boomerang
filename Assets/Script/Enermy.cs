@@ -6,21 +6,23 @@ public class Enermy : MonoBehaviour {
 
 	public enum EnermyType{chase, archer};
 
-	public float speed;
+	public float speed = 1;
 	public Transform target;
 	public EnermyType type = EnermyType.chase;
 
 	public int damage = 1;
 
 	public int reward_mutiplier = 1;
+	public int blood = 1;
+	public Rigidbody rigidbody;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 
 		if(type == EnermyType.chase){
 			float step = speed * Time.deltaTime;
@@ -31,7 +33,9 @@ public class Enermy : MonoBehaviour {
 
 	public void Hit(int count){
 		print ("enemy hit by bonerang");
-		Destroy (this.gameObject);
+		blood -= count;
+		if(blood<=0)
+			Destroy (this.gameObject);
 	}
 
 

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject player;
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreMgr;
+	public GameTimeUI gameTimeUI;
 
 	public GameState gameState;
 	public enum GameState {isPlaying,isGameOver};
@@ -41,21 +42,26 @@ public class GameManager : MonoBehaviour {
 		player.GetComponent<Player> ().enabled = false;
 		bloodMgr.enabled = false;
 		gameState = GameState.isGameOver;
+		gameTimeUI.Stop ();
 	}
 
 	public void GameReset(){
 		bloodImg.enabled = false;
 		for(int k = 0; k < enermyGenFolder.childCount; k++){
 			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
-			for (int i = 0; i < e.transform.childCount; i++) {
-				Destroy (e.transform.GetChild (i).gameObject);
+			if (e != null) {
+				for (int i = 0; i < e.transform.childCount; i++) {
+					Destroy (e.transform.GetChild (i).gameObject);
+				}
+				e.enabled = false;
 			}
-			e.enabled = false;
 		}
 		for(int k = 0; k < enermyGenFolder.childCount; k++){
 			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
-			e.Reset ();
-			e.enabled = true;
+			if (e != null) {
+				e.Reset ();
+				e.enabled = true;
+			}
 		}
 		player.GetComponent<PlayerMove> ().enabled = true;
 		player.GetComponent<PlayerShoot> ().enabled = true;
@@ -64,5 +70,7 @@ public class GameManager : MonoBehaviour {
 		bloodMgr.Reset ();
 		scoreMgr.Reset ();
 		gameState = GameState.isPlaying;
+		gameTimeUI.Reset ();
+		gameTimeUI.Play ();
 	}
 }

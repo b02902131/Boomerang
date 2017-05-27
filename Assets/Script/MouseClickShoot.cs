@@ -49,7 +49,7 @@ public class MouseClickShoot : PlayerShoot {
 				follower.player = this.gameObject.transform;
 				Bonerang bonerang = br.GetComponent<Bonerang> ();
 				bonerang.scoreUIMgr = scoreUIMgr;
-				bloodMgr.bloodLoss (1);
+				bloodMgr.bloodLoss ();
 
 				//finish shoot
 				finishShoot();

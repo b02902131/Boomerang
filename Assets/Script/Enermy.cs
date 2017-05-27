@@ -31,7 +31,7 @@ public class Enermy : MonoBehaviour {
 		}
 	}
 
-	public void Hit(int count){
+	public virtual void Hit(int count){
 		print ("enemy hit by bonerang");
 		blood -= count;
 		if(blood<=0)

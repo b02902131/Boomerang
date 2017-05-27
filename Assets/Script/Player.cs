@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	public void Hit(int damage){
 		if (damage > 0) {
 			if (injureTimer <= 0) {
-				mgr.bloodLoss (damage);
+				mgr.bloodLoss ();
 				mgr.PlayHitAnimation ();
 				injureTimer = injuredInterval;
 			}
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour {
 
 	public void CatchBoomerang(){
 		print ("catch");
-		mgr.bloodGain (1);
+		mgr.bloodGain ();
 		//maybe play catch animation
 	}
 

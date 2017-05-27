@@ -17,23 +17,15 @@ public class BloodMgr : MonoBehaviour {
 
 	public Image BloodBlur;
 
-	public void bloodGain(int damage){
-		if (damage > 0) {
-			if (currentBones < 7) {
-				currentBones++;
-			}
-		} else {
-			Debug.Log ("ben yeh sai, who call this is too over");
+	public void bloodGain(){
+		if (currentBones < 7) {
+			currentBones++;
 		}
 	}
 
-	public void bloodLoss(int damage){
-		if (damage > 0) {
-			if (currentBones > 0) {
-				currentBones--;
-			}
-		} else {
-			Debug.Log ("ben yeh sai, who call this is too over");
+	public void bloodLoss(){
+		if (currentBones > 0) {
+			currentBones--;
 		}
 	}
 

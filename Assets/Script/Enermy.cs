@@ -26,7 +26,9 @@ public class Enermy : MonoBehaviour {
 
 		if(type == EnermyType.chase){
 			float step = speed * Time.deltaTime;
-			this.transform.LookAt (target);
+			Vector3 target_pos = target.position;
+			target_pos.y = this.transform.position.y;
+			this.transform.LookAt (target_pos);
 			this.transform.Translate ((target.position - this.transform.position).normalized * step, Space.World);
 		}
 	}

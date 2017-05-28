@@ -19,4 +19,8 @@ public class animation_controller : MonoBehaviour {
 	public void setIsRunning(bool b){
 		animator.SetBool ("isRunning", b);
 	}
+
+	public void setShoot(){
+		animator.SetTrigger ("shoot");
+	}
 }

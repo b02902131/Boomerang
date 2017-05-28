@@ -23,10 +23,11 @@ public class WASDMove : PlayerMove {
 		moveDir += new Vector3 (1, 0, 0) * my_signFunc( Input.GetAxis ("Horizontal") );
 		moveDir += new Vector3 (0, 0, 1) * my_signFunc( Input.GetAxis ("Vertical") );
 		moveDir.Normalize ();
-		transform.LookAt (transform.position + moveDir);
+
 
 		if (moveDir != Vector3.zero) {
 			anim_controller.setIsRunning (true);
+			transform.LookAt (transform.position + moveDir);
 		} else {
 			anim_controller.setIsRunning (false);
 		}

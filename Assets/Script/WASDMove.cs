@@ -10,9 +10,11 @@ public class WASDMove : PlayerMove {
 	public float dashStoppingSpeed;
 	private Rigidbody mRigidBody;
 	private float currentDashTime;
+	private animation_controller anim_controller;
 	// Use this for initialization
 	void Start () {
 		mRigidBody = GetComponent<Rigidbody> ();
+		anim_controller = GetComponent<animation_controller> ();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,12 @@ public class WASDMove : PlayerMove {
 		moveDir += new Vector3 (0, 0, 1) * my_signFunc( Input.GetAxis ("Vertical") );
 		moveDir.Normalize ();
 		transform.LookAt (transform.position + moveDir);
+
+		if (moveDir != Vector3.zero) {
+			anim_controller.setIsRunning (true);
+		} else {
+			anim_controller.setIsRunning (false);
+		}
 
 		if ( Input.GetKeyDown(KeyCode.Space) ) {
 			currentDashTime = 0.0f;

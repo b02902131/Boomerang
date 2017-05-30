@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnermyGenerator : MonoBehaviour {
 
-	public Enermy enemy_prefab;
+	public Enemy enemy_prefab;
 	public Transform player;
 	public float interval_min;
 	public float interval_max;
@@ -36,7 +36,7 @@ public class EnermyGenerator : MonoBehaviour {
 	}
 
 	void enermyGenerate(){
-		Enermy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
+		Enemy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
 		enemy.target = player;
 		enemy.speed = Speed;
 		enemy.blood = blood;

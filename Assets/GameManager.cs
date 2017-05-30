@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour {
 	public float CameraShakeStrenth;
 
 	public Transform enermyGenFolder;
+	public Transform boomerangFolder;
 	public GameObject player;
+	public Animation_Controller anim;
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreMgr;
 	public GameTimeUI gameTimeUI;
@@ -22,10 +24,13 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		anim = player.GetComponent<Animation_Controller> ();
+		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if (gameState == GameState.isGameOver) {
 			if (Input.GetKeyDown (KeyCode.R)) {
 				GameReset ();
@@ -34,12 +39,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver(){
+
 		bloodImg.enabled = true;
 		GameCamera.transform.DOShakePosition (CameraShakeDuration, CameraShakeStrenth);
 
 		player.GetComponent<PlayerShoot> ().enabled = false;
 		player.GetComponent<PlayerMove> ().enabled = false;
 		player.GetComponent<Player> ().enabled = false;
+		anim.setIsDead (true);
 		bloodMgr.enabled = false;
 		gameState = GameState.isGameOver;
 		gameTimeUI.Stop ();
@@ -47,6 +54,9 @@ public class GameManager : MonoBehaviour {
 
 	public void GameReset(){
 		bloodImg.enabled = false;
+		for (int k = 0; k < boomerangFolder.childCount; k++) {
+			Destroy (boomerangFolder.GetChild (k).gameObject);
+		}
 		for(int k = 0; k < enermyGenFolder.childCount; k++){
 			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
 			if (e != null) {
@@ -66,6 +76,8 @@ public class GameManager : MonoBehaviour {
 		player.GetComponent<PlayerMove> ().enabled = true;
 		player.GetComponent<PlayerShoot> ().enabled = true;
 		player.GetComponent<Player> ().enabled = true;
+		anim.setIsDead (false);
+		anim.setReset ();
 		bloodMgr.enabled = true;
 		bloodMgr.Reset ();
 		scoreMgr.Reset ();

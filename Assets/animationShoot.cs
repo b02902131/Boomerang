@@ -13,4 +13,8 @@ public class animationShoot : MonoBehaviour {
 	public void triggerShoot(){
 		mouseShoot.shoot ();
 	}
+
+	public void playDead(){
+		
+	}
 }

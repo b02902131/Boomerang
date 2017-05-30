@@ -41,6 +41,7 @@ public class Follower : MonoBehaviour {
 
 	public void Flyout(Vector3 target){
 		state = State.flyOut;
+		target.y = this.transform.position.y;
 		Vector3 d = target - this.transform.position;
 		if (d.magnitude > maxDistance) {
 			target = this.transform.position + d.normalized * maxDistance;
@@ -52,6 +53,7 @@ public class Follower : MonoBehaviour {
 		state = State.flyBack;
 //		Vector3 target = mouseClickMove.target;
 		Vector3 target = player.position + player.GetComponent<Rigidbody>().velocity * 0.5f;
+		target.y = this.transform.position.y;
 		Vector3 d = target - transform.position;
 		if (d.magnitude > returnDistance) {
 			target = transform.position + d.normalized * returnDistance;

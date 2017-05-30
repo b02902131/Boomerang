@@ -30,7 +30,7 @@ public class Bonerang : MonoBehaviour {
 				if (last_hit_obj == null || last_hit_obj != collision.gameObject) {
 					last_hit_obj = collision.gameObject;
 					hit_counter++;
-					Enermy enemy = collision.gameObject.GetComponentInParent<Enermy> ();
+					Enemy enemy = collision.gameObject.GetComponentInParent<Enemy> ();
 					print (this.gameObject.name + " bonerang hit: counter = " + hit_counter + ", multiplier = " + enemy.reward_mutiplier+", isFlyBack = "+(follower.state == Follower.State.flyBack));
 					int addScore = hit_counter * enemy.reward_mutiplier;
 					if (follower.state == Follower.State.flyBack) {

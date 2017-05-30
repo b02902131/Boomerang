@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animation_controller : MonoBehaviour {
+public class Animation_Controller : MonoBehaviour {
 
 	public Animator animator;
 
@@ -22,5 +22,13 @@ public class animation_controller : MonoBehaviour {
 
 	public void setShoot(){
 		animator.SetTrigger ("shoot");
+	}
+
+	public void setReset(){
+		animator.SetTrigger ("reset");
+	}
+
+	public void setIsDead(bool b){
+		animator.SetBool ("isDead", b);
 	}
 }

@@ -7,14 +7,14 @@ public class WASDMove : PlayerMove {
 	public float speed = 10;
 	public float maxDashTime;
 	public float dashSpeed;
-	public float dashStoppingSpeed;
 	private Rigidbody mRigidBody;
 	private float currentDashTime;
-	private animation_controller anim_controller;
+	private Animation_Controller anim_controller;
+
 	// Use this for initialization
 	void Start () {
 		mRigidBody = GetComponent<Rigidbody> ();
-		anim_controller = GetComponent<animation_controller> ();
+		anim_controller = GetComponent<Animation_Controller> ();
 	}
 	
 	// Update is called once per frame
@@ -33,10 +33,10 @@ public class WASDMove : PlayerMove {
 		}
 
 		if ( Input.GetKeyDown(KeyCode.Space) ) {
-			currentDashTime = 0.0f;
+			currentDashTime = maxDashTime;
 		}
-		if (currentDashTime < maxDashTime) {
-			currentDashTime += dashStoppingSpeed;
+		if (currentDashTime > 0) {
+			currentDashTime -= Time.deltaTime;
 			mRigidBody.velocity = moveDir * dashSpeed;
 		} else {
 			//transform.Translate (moveDir * speed * Time.deltaTime, Space.World);

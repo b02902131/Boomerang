@@ -26,7 +26,7 @@ public class fireRang : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.CompareTag ("Enermy")) {
-			EnemyWithFire enemy = collision.gameObject.GetComponentInParent<EnemyWithFire> ();
+			Enemy enemy = collision.gameObject.GetComponentInParent<Enemy> ();
 			enemy.Burned ();
 			if (follower.state == Follower.State.Drop) {
 				Debug.Log("s");

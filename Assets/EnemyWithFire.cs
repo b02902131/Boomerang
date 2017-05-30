@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWithFire : Enermy {
+public class EnemyWithFire:MonoBehaviour {
 
 	public float secondsBeforeDead;
 	private ParticleSystem fireEffect;
@@ -28,7 +28,7 @@ public class EnemyWithFire : Enermy {
 	}
 
 	IEnumerator beforeDead(){
-		speed = 0;
+//		speed = 0;
 		yield return new WaitForSeconds(secondsBeforeDead);
 		Destroy (this.gameObject);
 	}

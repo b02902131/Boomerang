@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShoot:MonoBehaviour {
 	public GameObject boomerang;
 
-	public Animation_Controller anim;
+	public PlayerAnimationController anim;
 
 	public void shootAnimation(){
 		anim.setShoot ();

@@ -69,8 +69,6 @@ public class Enemy : MonoBehaviour {
 		onFire = true;
 		fireEffect.gameObject.SetActive(true);
 		StartCoroutine(beforeDead());
-
-
 	}
 
 	IEnumerator beforeDead(){

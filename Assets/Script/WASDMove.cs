@@ -9,12 +9,12 @@ public class WASDMove : PlayerMove {
 	public float dashSpeed;
 	private Rigidbody mRigidBody;
 	private float currentDashTime;
-	private Animation_Controller anim_controller;
+	private PlayerAnimationController anim_controller;
 
 	// Use this for initialization
 	void Start () {
 		mRigidBody = GetComponent<Rigidbody> ();
-		anim_controller = GetComponent<Animation_Controller> ();
+		anim_controller = GetComponent<PlayerAnimationController> ();
 	}
 	
 	// Update is called once per frame

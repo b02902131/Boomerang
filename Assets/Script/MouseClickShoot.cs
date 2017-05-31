@@ -11,6 +11,7 @@ public class MouseClickShoot : PlayerShoot {
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreUIMgr;
 	public float fowardDistance = 1;
+	private float flyingHeight = .9f;
 	int mask;
 
 	private Transform boomerangFolder;
@@ -20,7 +21,7 @@ public class MouseClickShoot : PlayerShoot {
 		bloodMgr = GameObject.Find ("BloodMgr").GetComponent<BloodMgr>();
 		scoreUIMgr = GameObject.Find ("ScoreUI").GetComponent<ScoreUIMgr> ();
 		isFinishShoot = false;	// set this to true everytime after shooting boomerang
-		anim = GetComponentInChildren<Animation_Controller>();
+		anim = GetComponentInChildren<PlayerAnimationController>();
 
 		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
 	}
@@ -46,11 +47,12 @@ public class MouseClickShoot : PlayerShoot {
 	public void shoot(){
 //		target = this.transform.position + this.transform.forward * 10;
 		//			this.transform.LookAt (target);
-		GameObject br = Instantiate (boomerang, rightHand.position + this.transform.forward*fowardDistance, Quaternion.identity);
+		Vector3 initPos = rightHand.position;
+		initPos.y = flyingHeight;
+		GameObject br = Instantiate (boomerang, initPos + this.transform.forward*fowardDistance, Quaternion.identity);
 		br.transform.SetParent (boomerangFolder);
 		Follower follower = br.GetComponent<Follower> ();
 		follower.GetRB ();
-		follower.mouseClickMove = GetComponent<MouseClickMove> ();
 		follower.wasdMove = GetComponent<WASDMove> ();
 		follower.Flyout (target);
 		follower.player = this.gameObject.transform;

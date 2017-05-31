@@ -18,7 +18,6 @@ public class Follower : MonoBehaviour {
 	public enum State {Start, flyOut, flyBack, Drop}
 
 	private Vector3 targetVelocity;
-	public MouseClickMove mouseClickMove;
 	public WASDMove wasdMove;
 	public float maxDistance ;
 	public float returnDistance;
@@ -51,7 +50,6 @@ public class Follower : MonoBehaviour {
 	}
 	public void FlyBack(){
 		state = State.flyBack;
-//		Vector3 target = mouseClickMove.target;
 		Vector3 target = player.position + player.GetComponent<Rigidbody>().velocity * 0.5f;
 		target.y = this.transform.position.y;
 		Vector3 d = target - transform.position;

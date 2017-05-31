@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	public Transform enermyGenFolder;
 	public Transform boomerangFolder;
 	public GameObject player;
-	public Animation_Controller anim;
+	public PlayerAnimationController anim;
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreMgr;
 	public GameTimeUI gameTimeUI;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = player.GetComponent<Animation_Controller> ();
+		anim = player.GetComponent<PlayerAnimationController> ();
 		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
 	}
 	

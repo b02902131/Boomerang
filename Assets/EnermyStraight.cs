@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnermyStraight : Enermy {
+public class EnermyStraight : Enemy {
 
 	private Vector3 dir;
 	private float straightRange = 10;

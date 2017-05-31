@@ -12,6 +12,7 @@ public class PressButtonShoot : MonoBehaviour {
 	public BloodMgr bloodMgr;
 	public float fowardDistance;
 	public bool isShootAtTarget;
+	private float flyingHeight = .9f;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +35,6 @@ public class PressButtonShoot : MonoBehaviour {
 //			this.transform.LookAt (target);
 			GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
 			Follower follower = br.GetComponent<Follower> ();
-			follower.mouseClickMove = GetComponent<MouseClickMove> ();
 			follower.wasdMove = GetComponent<WASDMove> ();
 			follower.Flyout (target);
 			follower.player = this.gameObject.transform;
@@ -65,7 +65,6 @@ public class PressButtonShoot : MonoBehaviour {
 				this.transform.LookAt (target);
 				GameObject br = Instantiate (boomerang, this.transform.position + this.transform.forward*fowardDistance, Quaternion.identity);
 				Follower follower = br.GetComponent<Follower> ();
-				follower.mouseClickMove = GetComponent<MouseClickMove> ();
 				follower.Flyout (target);
 				follower.player = this.gameObject.transform;
 				Bonerang bonerang = br.GetComponent<Bonerang> ();

@@ -15,6 +15,7 @@ public class WASDMove : PlayerMove {
 	void Start () {
 		mRigidBody = GetComponent<Rigidbody> ();
 		anim_controller = GetComponent<PlayerAnimationController> ();
+		isMoving = false;
 	}
 	
 	// Update is called once per frame
@@ -28,8 +29,10 @@ public class WASDMove : PlayerMove {
 		if (moveDir != Vector3.zero) {
 			anim_controller.setIsRunning (true);
 			transform.LookAt (transform.position + moveDir);
+			isMoving = true;
 		} else {
 			anim_controller.setIsRunning (false);
+			isMoving = false;
 		}
 
 		if ( Input.GetKeyDown(KeyCode.Space) ) {

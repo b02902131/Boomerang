@@ -10,6 +10,7 @@ public class MouseClickShoot : PlayerShoot {
 	private Vector3 target = new Vector3();
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreUIMgr;
+	private PlayerMove playerMove;
 	public float fowardDistance = 1;
 	private float flyingHeight = .9f;
 	int mask;
@@ -24,13 +25,17 @@ public class MouseClickShoot : PlayerShoot {
 		anim = GetComponentInChildren<PlayerAnimationController>();
 
 		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
+		playerMove = GetComponent<PlayerMove> ();
 	}
 
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);////(1)
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 1000, mask)) {////(2)
-			if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.tag == "floor") {
+			if (playerMove.isMoving == true) {
+				// do nothing
+			}
+			else if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.tag == "floor") {
 				target = new Vector3 (hit.point.x, this.transform.position.y, hit.point.z);
 				if (Vector3.Distance (this.transform.position, target) > 0.1f) {
 					// face to target

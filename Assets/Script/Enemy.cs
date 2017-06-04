@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour {
 	public float secondsBeforeDead;
 	private ParticleSystem fireEffect;
 	private bool onFire = false;
+	public drinkMilk milk_prefab;
 
 	// Use this for initialization
 	public virtual void Start () {
@@ -40,8 +41,15 @@ public class Enemy : MonoBehaviour {
 	public virtual void Hit(int count){
 		print ("enemy hit by bonerang");
 		blood -= count;
-		if(blood<=0)
+		if ( blood <= 0 ) {
+			if ( Random.Range(0, 7) < 1 ) {
+				Vector3 milkPos = this.transform.position;
+				milkPos.y = 0;
+				drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.identity, this.transform);	
+				milk.transform.SetParent (this.transform.parent);
+			}
 			Destroy (this.gameObject);
+		}
 	}
 
 

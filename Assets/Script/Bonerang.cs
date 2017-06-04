@@ -38,6 +38,7 @@ public class Bonerang : MonoBehaviour {
 					}
 					scoreUIMgr.AddScoreUI (addScore);
 					enemy.Hit (hit_counter);
+				
 				}
 			}
 		}

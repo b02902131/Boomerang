@@ -13,6 +13,7 @@ public class EnermyGenerator : MonoBehaviour {
 	public float RandRange;
 	public float Speed;
 	public int blood = 1;
+	public drinkMilk milk_prefab;
 
 	public AnimationCurve interval;
 
@@ -40,6 +41,7 @@ public class EnermyGenerator : MonoBehaviour {
 		enemy.target = player;
 		enemy.speed = Speed;
 		enemy.blood = blood;
+		enemy.milk_prefab = milk_prefab;
 	}
 
 	public void Reset(){

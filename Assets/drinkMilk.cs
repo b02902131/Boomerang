@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class drinkMilk : MonoBehaviour {
 
-	public BloodMgr mgr;
+	private Animator animator;
 	// Use this for initialization
 	void Start () {
-		
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,8 @@ public class drinkMilk : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.CompareTag ("Player")) {
-			mgr.bloodGain();
+			collision.gameObject.GetComponent<Player> ().mgr.bloodGain();
+			Destroy(this.gameObject);
 			// maybe add attack animation
 		}
 	}

@@ -22,11 +22,11 @@ public class Enemy : MonoBehaviour {
 	private bool onFire = false;
 	public drinkMilk milk_prefab;
 
-	private Animator animator;
+	public Animator animator;
 
 	// Use this for initialization
 	public virtual void Start () {
-		animator = gameObject.GetComponentInChildren<Animator> ();
+//		animator = gameObject.GetComponentInChildren<Animator> ();
 		
 	}
 	

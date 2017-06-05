@@ -15,7 +15,7 @@ public class BoomerangChangeProto : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		explode = GetComponentInChildren<ParticleSystem> ();
-		explode.Stop();
+		//explode.Stop();
 		mouseClickShoot = GetComponent<PlayerShoot> () as MouseClickShoot;
 		cur_score = scoreUIMgr.GetScore ();
 		pre_score = cur_score;

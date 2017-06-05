@@ -17,6 +17,7 @@ public class EnermyGenerator : MonoBehaviour {
 
 	private List<GameObject> enemy_preparing = new List<GameObject>();
 
+
 	public AnimationCurve interval;
 
 	// Use this for initialization
@@ -38,12 +39,23 @@ public class EnermyGenerator : MonoBehaviour {
 		}
 
 		// scale enemy
+		List<GameObject> enemy_remove_list = new List<GameObject>();
 		foreach (GameObject enemy in enemy_preparing) {
 			Vector3 scale = enemy.transform.localScale;
 			scale += Time.deltaTime * Vector3.one;
 			enemy.transform.localScale = scale;
-			if(scale.magnitude
+			if (scale.magnitude > Vector3.one.magnitude) {
+
+				enemy.GetComponent<Enemy> ().enabled = true;
+				enemy_remove_list.Add (enemy);
+			}
 		}
+		foreach (GameObject enemy in enemy_remove_list) {
+			if (enemy_preparing.Contains (enemy)) {
+				enemy_preparing.Remove (enemy);
+			}
+		}
+		enemy_remove_list.Clear ();
 	}
 
 	void enermyGenerate(){

@@ -15,6 +15,8 @@ public class EnermyGenerator : MonoBehaviour {
 	public int blood = 1;
 	public drinkMilk milk_prefab;
 
+	private List<GameObject> enemy_preparing = new List<GameObject>();
+
 	public AnimationCurve interval;
 
 	// Use this for initialization
@@ -34,6 +36,14 @@ public class EnermyGenerator : MonoBehaviour {
 			timer = interval.Evaluate (total_time);
 			enermyGenerate ();
 		}
+
+		// scale enemy
+		foreach (GameObject enemy in enemy_preparing) {
+			Vector3 scale = enemy.transform.localScale;
+			scale += Time.deltaTime * Vector3.one;
+			enemy.transform.localScale = scale;
+			if(scale.magnitude
+		}
 	}
 
 	void enermyGenerate(){
@@ -42,6 +52,10 @@ public class EnermyGenerator : MonoBehaviour {
 		enemy.speed = Speed;
 		enemy.blood = blood;
 		enemy.milk_prefab = milk_prefab;
+		enemy.enabled = false;
+		GameObject g = enemy.gameObject;
+		g.transform.localScale = 0.1f * Vector3.one;
+		enemy_preparing.Add (g);
 	}
 
 	public void Reset(){

@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		
+		
 	}
 	
 	// Update is called once per frame

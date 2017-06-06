@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour {
 	public virtual void Hit(int count){
 		print ("enemy hit by bonerang");
 		blood -= count;
-//		animator.SetTrigger ("hit");
+		animator.SetTrigger ("hit");
 		if ( blood <= 0 ) {
 			if ( Random.Range(0, 7) < 1 ) {
 				Vector3 milkPos = this.transform.position;

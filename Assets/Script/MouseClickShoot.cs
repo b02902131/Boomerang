@@ -69,4 +69,8 @@ public class MouseClickShoot : PlayerShoot {
 
 	}
 
+	public override void Reset(){
+		isFinishShoot = true;
+	}
+
 }

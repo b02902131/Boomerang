@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour {
 		}
 		player.GetComponent<PlayerMove> ().enabled = true;
 		player.GetComponent<PlayerShoot> ().enabled = true;
+		player.GetComponent<PlayerShoot> ().Reset();
 		player.GetComponent<Player> ().enabled = true;
 		anim.setIsDead (false);
 		anim.setReset ();

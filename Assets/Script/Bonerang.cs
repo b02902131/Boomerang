@@ -8,7 +8,7 @@ public class Bonerang : MonoBehaviour {
 	public ScoreUIMgr scoreUIMgr;
 
 	private int hit_counter;
-	private GameObject last_hit_obj = null;
+	public  GameObject last_hit_obj = null;
 
 	// Use this for initialization
 	void Start () {

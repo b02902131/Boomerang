@@ -41,13 +41,15 @@ public class EnermyGenerator : MonoBehaviour {
 		// scale enemy
 		List<GameObject> enemy_remove_list = new List<GameObject>();
 		foreach (GameObject enemy in enemy_preparing) {
-			Vector3 scale = enemy.transform.localScale;
-			scale += Time.deltaTime * Vector3.one;
-			enemy.transform.localScale = scale;
-			if (scale.magnitude > Vector3.one.magnitude) {
+			if (enemy != null) {
+				Vector3 scale = enemy.transform.localScale;
+				scale += Time.deltaTime * Vector3.one;
+				enemy.transform.localScale = scale;
+				if (scale.magnitude > Vector3.one.magnitude) {
 
-				enemy.GetComponent<Enemy> ().enabled = true;
-				enemy_remove_list.Add (enemy);
+					enemy.GetComponent<Enemy> ().enabled = true;
+					enemy_remove_list.Add (enemy);
+				}
 			}
 		}
 		foreach (GameObject enemy in enemy_remove_list) {
@@ -59,7 +61,7 @@ public class EnermyGenerator : MonoBehaviour {
 	}
 
 	void enermyGenerate(){
-		Enemy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.identity, this.transform);
+		Enemy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.Euler(0,Random.Range(0,360),0), this.transform);
 		enemy.target = player;
 		enemy.speed = Speed;
 		enemy.blood = blood;

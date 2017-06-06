@@ -10,6 +10,9 @@ public class PlayerShoot:MonoBehaviour {
 	public void shootAnimation(){
 		anim.setShoot ();
 	}
+
+	public virtual void Reset(){
+	}
 }
 
 

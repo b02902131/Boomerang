@@ -14,7 +14,7 @@ todo:
 
 
 
-
+	test reset HEAD
 
 
 

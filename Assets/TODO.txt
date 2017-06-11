@@ -2,6 +2,7 @@
 todo:
 	音效
 	介面
+		score feedback
 		[V]骨頭換成方的
 	Color
 		change the color design

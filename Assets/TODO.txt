@@ -2,7 +2,14 @@
 todo:
 	音效
 	介面
-		骨頭換成方的
+		[V]骨頭換成方的
+	Color
+		change the color design
+	GameFlow
+		redesign the enemy curve
+	Enemy
+		boss
+		shield enemy
 
 
 

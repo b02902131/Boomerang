@@ -10,6 +10,10 @@ public class DamageUI : MonoBehaviour {
 	public float ExistTime = 2.0f;
 	public AnimationCurve RiseSpdCurve;
 
+	public int BaseSize;
+	public int MaxSize;
+	public int SizeStep;
+
 	// Use this for initialization
 	void Start () {
 		timer = 0;
@@ -31,6 +35,9 @@ public class DamageUI : MonoBehaviour {
 	}
 
 	public void setScore(int score){
-		this.GetComponent<TextMesh>().text = "+" + score.ToString ();
+		TextMesh textMesh = this.GetComponent<TextMesh> ();
+		textMesh.text = "+" + score.ToString ();
+		textMesh.fontSize = Mathf.Clamp (BaseSize + SizeStep * (score - 1), BaseSize, MaxSize);
+
 	}
 }

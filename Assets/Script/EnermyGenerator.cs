@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnermyGenerator : MonoBehaviour {
 
 	public Enemy enemy_prefab;
+	private Transform enemy_folder;
 	public Transform player;
 	public float interval_min;
 	public float interval_max;
@@ -25,6 +26,7 @@ public class EnermyGenerator : MonoBehaviour {
 //		timer = Random.Range (interval_min, interval_max);
 		total_time = 0;
 		timer = interval.Evaluate (total_time);
+		enemy_folder = GameObject.Find ("EnemyFolder").transform;
 	}
 	
 	// Update is called once per frame
@@ -70,6 +72,7 @@ public class EnermyGenerator : MonoBehaviour {
 		GameObject g = enemy.gameObject;
 		g.transform.localScale = 0.1f * Vector3.one;
 		enemy_preparing.Add (g);
+		enemy.transform.SetParent (enemy_folder);
 	}
 
 	public void Reset(){

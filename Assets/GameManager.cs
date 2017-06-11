@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour {
 	public float CameraShakeDuration;
 	public float CameraShakeStrenth;
 
-	public Transform enermyGenFolder;
-	public Transform boomerangFolder;
+	private Transform enemyGenFolder;
+	private Transform enemyFolder;
+	private Transform boomerangFolder;
 	public GameObject player;
 	public PlayerAnimationController anim;
 	public BloodMgr bloodMgr;
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		anim = player.GetComponent<PlayerAnimationController> ();
 		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
+		enemyFolder = GameObject.Find ("EnemyFolder").transform;
+		enemyGenFolder = GameObject.Find ("EnemyGenFolder").transform;
 	}
 	
 	// Update is called once per frame
@@ -50,6 +53,13 @@ public class GameManager : MonoBehaviour {
 		bloodMgr.enabled = false;
 		gameState = GameState.isGameOver;
 		gameTimeUI.Stop ();
+
+		for(int k = 0; k < enemyGenFolder.childCount; k++){
+			EnermyGenerator e = enemyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
+			if (e != null) {
+				e.enabled = false;
+			}
+		}
 	}
 
 	public void GameReset(){
@@ -57,17 +67,11 @@ public class GameManager : MonoBehaviour {
 		for (int k = 0; k < boomerangFolder.childCount; k++) {
 			Destroy (boomerangFolder.GetChild (k).gameObject);
 		}
-		for(int k = 0; k < enermyGenFolder.childCount; k++){
-			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
-			if (e != null) {
-				for (int i = 0; i < e.transform.childCount; i++) {
-					Destroy (e.transform.GetChild (i).gameObject);
-				}
-				e.enabled = false;
-			}
+		for(int k = 0; k < enemyFolder.childCount; k++){
+			Destroy (enemyFolder.GetChild (k).gameObject);
 		}
-		for(int k = 0; k < enermyGenFolder.childCount; k++){
-			EnermyGenerator e = enermyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
+		for(int k = 0; k < enemyGenFolder.childCount; k++){
+			EnermyGenerator e = enemyGenFolder.GetChild (k).GetComponent<EnermyGenerator>();
 			if (e != null) {
 				e.Reset ();
 				e.enabled = true;

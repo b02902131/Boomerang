@@ -10,7 +10,6 @@ public class BloodMgr : MonoBehaviour {
 	public int initial_bones;
 	private int currentBones;
 	public GameObject myCanvas;
-
 	private Image[] bloods;
 
 	public GameManager gameMgr;

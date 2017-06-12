@@ -10,7 +10,7 @@ public class BoomerangChangeProto : MonoBehaviour {
 	public ScoreUIMgr scoreUIMgr;
 	private int pre_score, cur_score;
 	public int RewardScoreInterval;
-
+	public AudioSource power;
 	private ParticleSystem explode;
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,7 @@ public class BoomerangChangeProto : MonoBehaviour {
 		if (cur_score / RewardScoreInterval - pre_score / RewardScoreInterval >= 1) {
 			print ("cur_score= "+ cur_score+" pre_score= "+pre_score +"cur_score % 10 - pre_score % 10 = " +(cur_score % 10 - pre_score % 10));
 			explode.Play();
+			power.Play ();
 			mouseClickShoot.boomerang = boomerangUltimate;
 			mouseClickShoot.isFinishShoot = false;
 

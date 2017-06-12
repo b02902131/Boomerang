@@ -22,16 +22,25 @@ public class Follower : MonoBehaviour {
 	public float maxDistance ;
 	public float returnDistance;
 	private Bonerang bonerang;
+	public AudioSource back;
+	public AudioSource shoot;
 
 	// Use this for initialization
 	void Start () {
 		state = State.Start;
+		if (!shoot.isPlaying)
+			shoot.Play ();
 		bonerang = this.GetComponent<Bonerang> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
+		if (this.state == Follower.State.Drop) {
+			back.Stop ();
+			shoot.Stop ();
+		}
+		if (this.state == Follower.State.flyBack && !shoot.isPlaying && !back.isPlaying)
+			back.Play ();
 	}
 
 	public void GetRB(){

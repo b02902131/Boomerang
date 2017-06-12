@@ -7,7 +7,8 @@ public class Bonerang : MonoBehaviour {
 	public Follower follower;
 	public ScoreUIMgr scoreUIMgr;
 	public GameObject DamageUIPrefab;
-
+	public AudioSource hit1;
+	public AudioSource hit2;
 	private int hit_counter;
 	public  GameObject last_hit_obj = null;
 
@@ -37,6 +38,10 @@ public class Bonerang : MonoBehaviour {
 					if (follower.state == Follower.State.flyBack) {
 						addScore += 1;
 					}
+					if (follower.state == Follower.State.flyOut)
+						hit1.Play ();
+					else
+						hit2.Play ();
 					scoreUIMgr.AddScoreUI (addScore);
 					enemy.Hit (hit_counter);
 					ShowDamageUI (addScore);

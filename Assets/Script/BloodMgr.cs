@@ -10,7 +10,6 @@ public class BloodMgr : MonoBehaviour {
 	public int initial_bones;
 	private int currentBones;
 	public GameObject myCanvas;
-	public AudioSource dead;
 	private Image[] bloods;
 
 	public GameManager gameMgr;
@@ -63,7 +62,6 @@ public class BloodMgr : MonoBehaviour {
 		bones = currentBones;
 
 		if (bones <= 0) {
-			dead.Play ();
 			gameMgr.GameOver ();
 		}
 	}

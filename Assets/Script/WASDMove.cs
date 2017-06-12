@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WASDMove : PlayerMove {
 
-	public AudioSource run;
 	public float speed = 10;
 	public float maxDashTime;
 	public float dashSpeed;
@@ -31,10 +30,7 @@ public class WASDMove : PlayerMove {
 			anim_controller.setIsRunning (true);
 			transform.LookAt (transform.position + moveDir);
 			isMoving = true;
-			if (!run.isPlaying)
-				run.Play ();
 		} else {
-			run.Stop();
 			anim_controller.setIsRunning (false);
 			isMoving = false;
 		}

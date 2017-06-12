@@ -7,6 +7,7 @@ public class moveBackground : MonoBehaviour {
 	private Transform transform;
 	public int threshold;
 	public int initialY;
+	public float speed;
 	// Use this for initialization
 	void Start () {
 		this.transform = GetComponent<Transform>();
@@ -15,7 +16,7 @@ public class moveBackground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(0, 8 * Time.deltaTime, 0);
+		transform.Translate(0, speed * Time.deltaTime, 0);
 		if ( transform.position.y >= threshold ) {
 			transform.position = new Vector3(transform.position.x, initialY, transform.position.z);
 		}

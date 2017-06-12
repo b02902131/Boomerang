@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 	public PlayerAnimationController anim;
 	public BloodMgr bloodMgr;
 	public ScoreUIMgr scoreMgr;
+	public LevelMgr levelMgr;
 	public GameTimeUI gameTimeUI;
 
 	public GameState gameState;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour {
 		bloodMgr.enabled = true;
 		bloodMgr.Reset ();
 		scoreMgr.Reset ();
+		levelMgr.Reset ();
 		gameState = GameState.isPlaying;
 		gameTimeUI.Reset ();
 		gameTimeUI.Play ();

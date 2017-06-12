@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WASDMove : PlayerMove {
-
+	
+	public AudioSource run;
 	public float speed = 10;
 	public float maxDashTime;
 	public float dashSpeed;
 	private Rigidbody mRigidBody;
 	private float currentDashTime;
 	private PlayerAnimationController anim_controller;
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,10 @@ public class WASDMove : PlayerMove {
 			anim_controller.setIsRunning (true);
 			transform.LookAt (transform.position + moveDir);
 			isMoving = true;
+			if (!run.isPlaying)
+				run.Play ();
 		} else {
+			run.Stop();
 			anim_controller.setIsRunning (false);
 			isMoving = false;
 		}

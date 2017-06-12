@@ -42,7 +42,6 @@ public class MouseClickShoot : PlayerShoot {
 					this.transform.LookAt (target);
 					// play shoot animation
 					shootAnimation();
-
 				}
 
 			}

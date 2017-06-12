@@ -10,11 +10,10 @@ public class BloodMgr : MonoBehaviour {
 	public int initial_bones;
 	private int currentBones;
 	public GameObject myCanvas;
-
 	private Image[] bloods;
 
 	public GameManager gameMgr;
-
+	public AudioSource dead;
 	public Image BloodBlur;
 
 	public void bloodGain(){
@@ -64,10 +63,12 @@ public class BloodMgr : MonoBehaviour {
 
 		if (bones <= 0) {
 			gameMgr.GameOver ();
+			dead.Play ();
 		}
 	}
 
 	public void Reset(){
+		dead.Stop ();
 		for ( int i = this.bones; i < 7; i++ ) {
 			bloods[i].enabled = true;
 		}

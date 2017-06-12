@@ -6,6 +6,7 @@ public class Bonerang : MonoBehaviour {
 
 	public Follower follower;
 	public ScoreUIMgr scoreUIMgr;
+	public GameObject DamageUIPrefab;
 
 	private int hit_counter;
 	public  GameObject last_hit_obj = null;
@@ -38,7 +39,7 @@ public class Bonerang : MonoBehaviour {
 					}
 					scoreUIMgr.AddScoreUI (addScore);
 					enemy.Hit (hit_counter);
-				
+					ShowDamageUI (addScore);
 				}
 			}
 		}
@@ -51,5 +52,10 @@ public class Bonerang : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void ShowDamageUI(int addScore){
+		DamageUI damageUI = Instantiate (DamageUIPrefab, this.transform.position, Quaternion.identity).GetComponent<DamageUI>();
+		damageUI.setScore (addScore);
 	}
 }

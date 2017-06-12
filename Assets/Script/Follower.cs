@@ -64,6 +64,7 @@ public class Follower : MonoBehaviour {
 		this.GetComponent<Rotator> ().enabled = false;
 		rb.useGravity = true;
 		rb.isKinematic = false;
+		rb.constraints = RigidbodyConstraints.None;
 	}
 			
 }

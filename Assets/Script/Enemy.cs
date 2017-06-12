@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour {
 			if ( Random.Range(0, 7) < 1 ) {
 				Vector3 milkPos = this.transform.position;
 				milkPos.y = 0;
-				drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.identity, this.transform);	
+				drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.Euler(new Vector3(0, Random.Range(0,360),0)), this.transform);	
 				milk.transform.SetParent (this.transform.parent);
 			}
 			Destroy (this.gameObject);

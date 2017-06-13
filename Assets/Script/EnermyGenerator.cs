@@ -7,8 +7,8 @@ public class EnermyGenerator : MonoBehaviour {
 	public Enemy enemy_prefab;
 	private Transform enemy_folder;
 	public Transform player;
-	public float interval_min;
-	public float interval_max;
+//	public float interval_min;
+//	public float interval_max;
 	public float timer;
 	private float total_time;
 	public float RandRange;
@@ -18,8 +18,11 @@ public class EnermyGenerator : MonoBehaviour {
 
 	private List<GameObject> enemy_preparing = new List<GameObject>();
 
-
+	private const int level_num = 3;
 	public AnimationCurve interval;
+	private bool flag;
+	public AnimationCurve[] level_interval = new AnimationCurve[level_num];
+	public bool[] level_flag = new bool[level_num];
 
 	// Use this for initialization
 	void Start () {
@@ -27,13 +30,14 @@ public class EnermyGenerator : MonoBehaviour {
 		total_time = 0;
 		timer = interval.Evaluate (total_time);
 		enemy_folder = GameObject.Find ("EnemyFolder").transform;
+		Reset ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		total_time += Time.deltaTime;
 
-		timer -= Time.deltaTime;
+		if (flag) timer -= Time.deltaTime;
 		if (timer < 0) {
 //			timer = Random.Range (interval_min, interval_max);
 			timer = interval.Evaluate (total_time);
@@ -77,8 +81,15 @@ public class EnermyGenerator : MonoBehaviour {
 
 	public void Reset(){
 		total_time = 0;
+		interval = level_interval [0];
+		flag = level_flag [0];
 		timer = interval.Evaluate (total_time);
 	}
 
-
+	public void SetLevel(int level){
+		total_time = 0;
+		interval = level_interval [level - 1];	// level = 1,2,3,  while index = 0,1,2
+		flag = level_flag[0];
+		timer = interval.Evaluate (total_time);
+	}
 }

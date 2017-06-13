@@ -7,7 +7,8 @@ public class Player : MonoBehaviour {
 	public BloodMgr mgr;
 	private float injuredInterval = 0.5f;
 	private float injureTimer;
-
+	public AudioSource heal;
+	public AudioSource kick;
 	// Use this for initialization
 	void Start () {
 		injureTimer = 0;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour {
 	public void Hit(int damage){
 		if (damage > 0) {
 			if (injureTimer <= 0) {
+				kick.Play ();
 				mgr.bloodLoss ();
 				mgr.PlayHitAnimation ();
 				injureTimer = injuredInterval;
@@ -32,6 +34,11 @@ public class Player : MonoBehaviour {
 		print ("catch");
 		mgr.bloodGain ();
 		//maybe play catch animation
+	}
+	void OnCollisionEnter(Collision collision){
+		if (collision.gameObject.CompareTag ("Milk")) {
+			heal.Play ();
+		}
 	}
 
 }

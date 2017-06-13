@@ -41,7 +41,7 @@ public class LevelMgr : MonoBehaviour {
 			default:
 				break;
 		}
-
+		UpdateEnemyGen (level);
 	}
 
 	void UpdateEnemyGen(int L){

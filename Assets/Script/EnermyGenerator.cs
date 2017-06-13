@@ -20,7 +20,7 @@ public class EnermyGenerator : MonoBehaviour {
 
 	private const int level_num = 3;
 	public AnimationCurve interval;
-	private bool flag;
+	public bool flag;
 	public AnimationCurve[] level_interval = new AnimationCurve[level_num];
 	public bool[] level_flag = new bool[level_num];
 
@@ -89,7 +89,7 @@ public class EnermyGenerator : MonoBehaviour {
 	public void SetLevel(int level){
 		total_time = 0;
 		interval = level_interval [level - 1];	// level = 1,2,3,  while index = 0,1,2
-		flag = level_flag[0];
+		flag = level_flag[level-1];
 		timer = interval.Evaluate (total_time);
 	}
 }

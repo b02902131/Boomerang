@@ -6,6 +6,7 @@ public class LevelApproach : MonoBehaviour {
 
 
 	public float maxY;
+	private float initY;
 	public float stayTime;
 	public int speed;
 
@@ -13,9 +14,11 @@ public class LevelApproach : MonoBehaviour {
 	private int moveState = 0; // 0 UP, 1 Stay, 2 Down
 
 	private float timer;
+
 	// Use this for initialization
 	void Start () {
 		this.transform = GetComponent<Transform>();
+		initY = this.transform.position.y;
 		timer = 0;
 	}
 	
@@ -33,6 +36,11 @@ public class LevelApproach : MonoBehaviour {
 			}
 		} else if ( moveState == 2 ) {
 			transform.Translate(0, -1 * speed * Time.deltaTime, 0);
+			if (transform.position.y <= initY) {
+				moveState = 0;
+				this.gameObject.SetActive (false);
+				timer = 0;
+			}
 		}
 	}
 

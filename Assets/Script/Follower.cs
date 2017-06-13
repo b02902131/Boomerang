@@ -54,7 +54,6 @@ public class Follower : MonoBehaviour {
 		if (d.magnitude > maxDistance) {
 			target = this.transform.position + d.normalized * maxDistance;
 		}
-		print ("follwer46, target = " + target);
 		this.transform.DOMove (target, returnTime, false).SetEase (flySpdCurve).OnComplete(FlyBack);
 	}
 	public void FlyBack(){

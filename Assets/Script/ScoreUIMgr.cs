@@ -23,6 +23,9 @@ public class ScoreUIMgr : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		checkLevel();
+		if (Input.GetKeyUp (KeyCode.P)) {
+			AddScoreUI (10);
+		}
 	}
 
 	private void checkLevel(){
@@ -48,6 +51,7 @@ public class ScoreUIMgr : MonoBehaviour {
 	public void Reset(){
 		score = 0;
 		score_text.text = score.ToString ("###0");
+		level = 1;
 	}
 
 	public int GetScore(){

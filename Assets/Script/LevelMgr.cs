@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelMgr : MonoBehaviour {
 
-	private int level = 1; // level can be 1, 2, 3
+	public int level = 1; // level can be 1, 2, 3
 	private GameObject levelOneUp;
 	private GameObject levelTwoUp;
 

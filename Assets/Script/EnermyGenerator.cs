@@ -19,8 +19,8 @@ public class EnermyGenerator : MonoBehaviour {
 	private List<GameObject> enemy_preparing = new List<GameObject>();
 
 	private const int level_num = 3;
-	public AnimationCurve interval;
-	public bool flag;
+	private AnimationCurve interval;
+	private bool flag;
 	public AnimationCurve[] level_interval = new AnimationCurve[level_num];
 	public bool[] level_flag = new bool[level_num];
 

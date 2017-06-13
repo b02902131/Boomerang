@@ -27,10 +27,11 @@ public class EnermyGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		timer = Random.Range (interval_min, interval_max);
+		Reset ();
 		total_time = 0;
 		timer = interval.Evaluate (total_time);
 		enemy_folder = GameObject.Find ("EnemyFolder").transform;
-		Reset ();
+
 	}
 	
 	// Update is called once per frame

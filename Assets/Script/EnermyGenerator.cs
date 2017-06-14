@@ -70,13 +70,11 @@ public class EnermyGenerator : MonoBehaviour {
 	void enermyGenerate(){
 		Enemy enemy = Instantiate (enemy_prefab, this.transform.position + new Vector3(Random.Range(-RandRange,RandRange),0,Random.Range(-RandRange,RandRange)), Quaternion.Euler(0,Random.Range(0,360),0), this.transform);
 		enemy.target = player;
-		enemy.speed = Speed;
-		enemy.blood = blood;
 		enemy.milk_prefab = milk_prefab;
-//		enemy.enabled = false;
-//		GameObject g = enemy.gameObject;
-//		g.transform.localScale = 0.1f * Vector3.one;
-//		enemy_preparing.Add (g);
+		enemy.enabled = false;
+		GameObject g = enemy.gameObject;
+		g.transform.localScale = 0.1f * Vector3.one;
+		enemy_preparing.Add (g);
 		enemy.transform.SetParent (enemy_folder);
 	}
 

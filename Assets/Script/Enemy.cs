@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
 	public float secondsBeforeDead;
 	private ParticleSystem fireEffect;
 	private bool onFire = false;
+	private bool isDead = false;
 	public drinkMilk milk_prefab;
 
 	public Animator animator;
@@ -50,19 +51,33 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public virtual void Hit(int count){
-		print ("enemy hit by bonerang");
-		blood -= count;
-		animator.SetTrigger ("hit");
-		if ( blood <= 0 ) {
-			if ( Random.Range(0, 7) < 1 ) {
-				Vector3 milkPos = this.transform.position;
-				milkPos.y = 0;
-				drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.Euler(new Vector3(0, Random.Range(0,360),0)), this.transform);	
-				milk.transform.SetParent (this.transform.parent);
+	public void Hit(int count){
+		if (!isDead) {
+			blood -= count;
+			animator.SetTrigger ("hit");
+			if (blood <= 0) {
+				Dead ();
 			}
-			Destroy (this.gameObject);
 		}
+	}
+
+	void Dead(){
+		isDead = true;
+		animator.SetTrigger ("Dead");
+		this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezePositionY;
+		BoxCollider[] boxes = GetComponentsInChildren<BoxCollider> ();
+		foreach (BoxCollider box in boxes) {
+			box.enabled = false;
+		}
+		this.enabled = false;
+	}
+
+
+	void GenMilk(){
+		Vector3 milkPos = this.transform.position;
+		milkPos.y = 0;
+		drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.Euler(new Vector3(0, Random.Range(0,360),0)), this.transform);	
+		milk.transform.SetParent (this.transform.parent);
 	}
 
 

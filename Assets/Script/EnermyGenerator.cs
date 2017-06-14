@@ -73,10 +73,10 @@ public class EnermyGenerator : MonoBehaviour {
 		enemy.speed = Speed;
 		enemy.blood = blood;
 		enemy.milk_prefab = milk_prefab;
-		enemy.enabled = false;
-		GameObject g = enemy.gameObject;
-		g.transform.localScale = 0.1f * Vector3.one;
-		enemy_preparing.Add (g);
+//		enemy.enabled = false;
+//		GameObject g = enemy.gameObject;
+//		g.transform.localScale = 0.1f * Vector3.one;
+//		enemy_preparing.Add (g);
 		enemy.transform.SetParent (enemy_folder);
 	}
 

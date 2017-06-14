@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
 	public float secondsBeforeDead;
 	private ParticleSystem fireEffect;
 	private bool onFire = false;
-	private bool isDead = false;
+	public bool isDead = false;
 	public drinkMilk milk_prefab;
 
 	public Animator animator;
@@ -57,11 +57,17 @@ public class Enemy : MonoBehaviour {
 			animator.SetTrigger ("hit");
 			if (blood <= 0) {
 				Dead ();
+			} else {
+				AfterHit ();
 			}
 		}
 	}
 
-	void Dead(){
+	public virtual void AfterHit(){
+
+	}
+
+	public void Dead(){
 		isDead = true;
 		animator.SetTrigger ("Dead");
 		this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezePositionY;
@@ -69,16 +75,20 @@ public class Enemy : MonoBehaviour {
 		foreach (BoxCollider box in boxes) {
 			box.enabled = false;
 		}
-		this.enabled = false;
+		this.GetComponent<Enemy> ().enabled = false;
+		Rigidbody rb = this.GetComponent<Rigidbody> ();
+		rb.velocity = Vector3.zero;
+		rb.useGravity = false;
+
+		AfterDead ();
+	}
+
+	public virtual void AfterDead(){
+		
 	}
 
 
-	void GenMilk(){
-		Vector3 milkPos = this.transform.position;
-		milkPos.y = 0;
-		drinkMilk milk = Instantiate (milk_prefab, milkPos, Quaternion.Euler(new Vector3(0, Random.Range(0,360),0)), this.transform);	
-		milk.transform.SetParent (this.transform.parent);
-	}
+
 
 
 	void OnCollisionEnter(Collision collision){

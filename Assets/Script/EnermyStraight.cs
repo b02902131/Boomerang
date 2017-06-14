@@ -21,19 +21,21 @@ public class EnermyStraight : Enemy {
 	
 	// Update is called once per frame
 	public override void Update () {
-		rigidbody.velocity = this.transform.forward.normalized * speed;
+		if (!isDead) {
+			rigidbody.velocity = this.transform.forward.normalized * speed;
 
-		Vector3 target_pos = this.gameObject.transform.position + dir;
-		target_pos.y = this.transform.position.y;
+			Vector3 target_pos = this.gameObject.transform.position + dir;
+			target_pos.y = this.transform.position.y;
 
-		Quaternion neededRotation = Quaternion.LookRotation(target_pos - transform.position);
-		Quaternion interpolatedRotation = Quaternion.Slerp(transform.rotation, neededRotation, Time.deltaTime * rotateSpd);
+			Quaternion neededRotation = Quaternion.LookRotation (target_pos - transform.position);
+			Quaternion interpolatedRotation = Quaternion.Slerp (transform.rotation, neededRotation, Time.deltaTime * rotateSpd);
 
-		this.transform.rotation = interpolatedRotation;
+			this.transform.rotation = interpolatedRotation;
 
-		sqrdistance = (this.transform.position - target.transform.position).sqrMagnitude;
-		if (sqrdistance > straightRange * straightRange) {
-			updateDirection ();
+			sqrdistance = (this.transform.position - target.transform.position).sqrMagnitude;
+			if (sqrdistance > straightRange * straightRange) {
+				updateDirection ();
+			}
 		}
 	}
 }

@@ -43,7 +43,7 @@ public class Bonerang : MonoBehaviour {
 					else
 						hit2.Play ();
 					scoreUIMgr.AddScoreUI (addScore);
-					enemy.Hit (hit_counter);
+					enemy.Hit (1);
 					ShowDamageUI (addScore);
 				}
 			}

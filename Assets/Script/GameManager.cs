@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	private Transform enemyGenFolder;
 	private Transform enemyFolder;
 	private Transform boomerangFolder;
+	private Vector3 player_pos;
 	public GameObject player;
 	public PlayerAnimationController anim;
 	public BloodMgr bloodMgr;
@@ -23,9 +24,11 @@ public class GameManager : MonoBehaviour {
 
 	public GameState gameState;
 	public enum GameState {isPlaying,isGameOver};
+	public GameObject ResetUI;
 
 	// Use this for initialization
 	void Start () {
+		player_pos = player.transform.position;
 		anim = player.GetComponent<PlayerAnimationController> ();
 		boomerangFolder = GameObject.Find ("boomerangFolder").transform;
 		enemyFolder = GameObject.Find ("EnemyFolder").transform;
@@ -43,7 +46,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver(){
-
+		ResetUI.SetActive (true);
 		bloodImg.enabled = true;
 		GameCamera.transform.DOShakePosition (CameraShakeDuration, CameraShakeStrenth);
 
@@ -64,6 +67,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameReset(){
+		ResetUI.SetActive (false);
+		player.transform.position = player_pos;
 		bloodImg.enabled = false;
 		for (int k = 0; k < boomerangFolder.childCount; k++) {
 			Destroy (boomerangFolder.GetChild (k).gameObject);

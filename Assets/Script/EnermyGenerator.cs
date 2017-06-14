@@ -12,8 +12,6 @@ public class EnermyGenerator : MonoBehaviour {
 	public float timer;
 	private float total_time;
 	public float RandRange;
-	public float Speed;
-	public int blood = 1;
 	public drinkMilk milk_prefab;
 
 	private List<GameObject> enemy_preparing = new List<GameObject>();

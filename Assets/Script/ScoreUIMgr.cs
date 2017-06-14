@@ -23,7 +23,7 @@ public class ScoreUIMgr : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		checkLevel();
-		if (Input.GetKeyUp (KeyCode.P)) {
+		if (Input.GetKeyUp (KeyCode.P) && Input.GetKey(KeyCode.O)) {
 			AddScoreUI (10);
 		}
 	}

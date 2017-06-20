@@ -11,6 +11,7 @@ public class ScoreUIMgr : MonoBehaviour {
 	private LevelMgr levelMgr;
 	public int levelTwoScore = 20;
 	public int levelThreeScore = 100;
+	private bool isActivate;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class ScoreUIMgr : MonoBehaviour {
 		level = levelMgr.getLevel();
 		Debug.Log("Level");
 		Debug.Log(level);
+		isActivate = true;
 	}
 	
 	// Update is called once per frame
@@ -44,11 +46,18 @@ public class ScoreUIMgr : MonoBehaviour {
 	}
 
 	public void AddScoreUI(int num){
-		score += num;
-		UpdateScoreUI(score);
+		if (isActivate) {
+			score += num;
+			UpdateScoreUI (score);
+		}
+	}
+
+	public void Stop(){
+		isActivate = false;
 	}
 
 	public void Reset(){
+		isActivate = true;
 		score = 0;
 		score_text.text = score.ToString ("###0");
 		level = 1;

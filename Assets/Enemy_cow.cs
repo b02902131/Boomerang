@@ -17,13 +17,24 @@ public class Enemy_cow : Enemy {
 	}
 
 	private void updateDirection(){
-		dir = -target.position+this.transform.position/2;
+		dir = dir.normalized;
+		Vector3 d = this.transform.position - target.position;
+
+		print ("d = " + d + ",1/ d.sqr = " + 1/d.sqrMagnitude);
+		dir += d.normalized * 5 * Mathf.Clamp (25 / d.sqrMagnitude, 1, 5); 
+
+		dir += -this.transform.position.normalized * Mathf.Clamp (this.transform.position.sqrMagnitude, 1, 5); 
 		dir.y = 0;
+		if(dir == Vector3.zero) {
+			dir = Vector3.one;
+		}
 	}
 	
 	// Update is called once per frame
 	public override void Update () {
 		if (!isDead) {
+			updateDirection ();
+
 			rigidbody.velocity = this.transform.forward * speed;
 
 			Vector3 target_pos = this.gameObject.transform.position + dir;
@@ -34,8 +45,6 @@ public class Enemy_cow : Enemy {
 
 			//			this.transform.LookAt (target_pos);
 			this.transform.rotation = interpolatedRotation;
-
-			updateDirection ();
 
 			timer -= Time.deltaTime;
 			if (timer <= 0) {

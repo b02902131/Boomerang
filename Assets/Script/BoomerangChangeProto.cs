@@ -25,12 +25,12 @@ public class BoomerangChangeProto : MonoBehaviour {
 	void Update () {
 		if (mouseClickShoot.isFinishShoot == true) {
 			mouseClickShoot.boomerang = boomerangNormal;
-			print ("reset boomerang");
+//			print ("reset boomerang");
 		}
 
 		cur_score = scoreUIMgr.GetScore ();
 		if (cur_score / RewardScoreInterval - pre_score / RewardScoreInterval >= 1) {
-			print ("cur_score= "+ cur_score+" pre_score= "+pre_score +"cur_score % 10 - pre_score % 10 = " +(cur_score % 10 - pre_score % 10));
+//			print ("cur_score= "+ cur_score+" pre_score= "+pre_score +"cur_score % 10 - pre_score % 10 = " +(cur_score % 10 - pre_score % 10));
 			explode.Play();
 			power.Play ();
 			mouseClickShoot.boomerang = boomerangUltimate;

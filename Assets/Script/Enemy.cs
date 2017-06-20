@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour {
 		if (collision.gameObject.CompareTag ("Player")) {
 			Player player = collision.gameObject.GetComponent<Player> ();
 			player.Hit (damage);
-			print ("enemy hit player");
+//			print ("enemy hit player");
 			// maybe add attack animation
 		}
 
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour {
 
 	//fire===
 	public void Burned(){
-		print ("enemy hit by bonerang");
+//		print ("enemy hit by bonerang");
 		fireEffect = this.transform.Find ("Fire effect").GetComponent<ParticleSystem>();
 
 		onFire = true;

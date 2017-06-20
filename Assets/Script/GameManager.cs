@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 	public GameState gameState;
 	public enum GameState {isPlaying,isGameOver};
 	public GameObject ResetUI;
+	public SendScore sendScore;
 
 	// Use this for initialization
 	void Start () {
@@ -38,11 +39,11 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (gameState == GameState.isGameOver) {
-			if (Input.GetKeyDown (KeyCode.R)) {
-				GameReset ();
-			}
-		}
+//		if (gameState == GameState.isGameOver) {
+//			if (Input.GetKeyDown (KeyCode.R)) {
+//				GameReset ();
+//			}
+//		}
 	}
 
 	public void GameOver(){
@@ -64,6 +65,9 @@ public class GameManager : MonoBehaviour {
 				e.enabled = false;
 			}
 		}
+
+		sendScore.initialize (scoreMgr.GetScore ());
+		scoreMgr.Stop ();
 	}
 
 	public void GameReset(){

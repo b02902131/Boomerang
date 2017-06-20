@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class webRequest : MonoBehaviour {
 
-	private string url = "http://127.0.0.1:5000/showrecord/unityparse/";
+	private string url = "https://morning-thicket-62925.herokuapp.com/showrecord/unityparse/";
 	private string domain = "https://morning-thicket-62925.herokuapp.com/";
 	public GameObject scoreboard;
 	private  highScoreText hst;
@@ -26,16 +26,16 @@ public class webRequest : MonoBehaviour {
 	}
 
 	public void GetScore(){
-		WWW www = new WWW(url);
-		StartCoroutine(WaitForRequest(www));
+		StartCoroutine(WaitForRequest(url));
 	}
 
 	void UpdateScoreBoard(){
 		scoreboard.SetActive (true);
 	}
 
-	IEnumerator WaitForRequest(WWW www)
+	IEnumerator WaitForRequest(string _url)
 	{
+		WWW www = new WWW(_url);
 		yield return www;
 
 		// check for errors

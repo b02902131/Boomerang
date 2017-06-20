@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void CatchBoomerang(){
-		print ("catch");
+//		print ("catch");
 		mgr.bloodGain ();
 		//maybe play catch animation
 	}
